@@ -68,7 +68,7 @@ pub fn main() !void {
     const formatted = try tree.render(gpa);
     defer gpa.free(formatted);
 
-    const out = try std.fs.createFileAbsolute(out_path, .{});
+    const out = try std.fs.cwd().createFile(out_path, .{});
     defer out.close();
 
     try out.writeAll(formatted);
